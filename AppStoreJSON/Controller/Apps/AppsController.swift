@@ -1,13 +1,13 @@
 //
-//  AppSearchController.swift
+//  AppsController.swift
 //  AppStoreJSON
 //
-//  Created by John Padilla on 3/20/25.
+//  Created by John Padilla on 6/25/25.
 //
 
 import UIKit
 
-class AppSearchController: UICollectionViewController {
+class AppsController: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -15,8 +15,10 @@ class AppSearchController: UICollectionViewController {
         collectionView.backgroundColor = .yellow
     }
     
+    //MARK: - Helpers
+    
     init() {
-        super.init(collectionViewLayout: UICollectionViewLayout())
+        super.init(collectionViewLayout: UICollectionViewFlowLayout())
     }
     
     required init?(coder: NSCoder) {
