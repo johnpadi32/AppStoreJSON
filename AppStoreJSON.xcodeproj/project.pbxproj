@@ -6,8 +6,15 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		E3BC3AF5C0CAD868A78CB7AC /* Pods_AppStoreJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3708E390E45D9F6C1EDF900 /* Pods_AppStoreJSON.framework */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
+		02F9F681DF0AD3A41A31E7EF /* Pods-AppStoreJSON.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppStoreJSON.release.xcconfig"; path = "Target Support Files/Pods-AppStoreJSON/Pods-AppStoreJSON.release.xcconfig"; sourceTree = "<group>"; };
 		48B35F062D8D208900C3F07D /* AppStoreJSON.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppStoreJSON.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5788B4E3DB08F079B7BDFCD0 /* Pods-AppStoreJSON.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppStoreJSON.debug.xcconfig"; path = "Target Support Files/Pods-AppStoreJSON/Pods-AppStoreJSON.debug.xcconfig"; sourceTree = "<group>"; };
+		C3708E390E45D9F6C1EDF900 /* Pods_AppStoreJSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AppStoreJSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -36,16 +43,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E3BC3AF5C0CAD868A78CB7AC /* Pods_AppStoreJSON.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		330B22B16A26CCE0CC2BFF41 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5788B4E3DB08F079B7BDFCD0 /* Pods-AppStoreJSON.debug.xcconfig */,
+				02F9F681DF0AD3A41A31E7EF /* Pods-AppStoreJSON.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		48B35EFD2D8D208900C3F07D = {
 			isa = PBXGroup;
 			children = (
 				48B35F082D8D208900C3F07D /* AppStoreJSON */,
+				7CF00CED4FD5BB9F62261054 /* Frameworks */,
+				330B22B16A26CCE0CC2BFF41 /* Pods */,
 				48B35F072D8D208900C3F07D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -58,6 +77,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		7CF00CED4FD5BB9F62261054 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C3708E390E45D9F6C1EDF900 /* Pods_AppStoreJSON.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -65,9 +92,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 48B35F1C2D8D208E00C3F07D /* Build configuration list for PBXNativeTarget "AppStoreJSON" */;
 			buildPhases = (
+				E6F85B4AD2548A9F89FBAC8A /* [CP] Check Pods Manifest.lock */,
 				48B35F022D8D208900C3F07D /* Sources */,
 				48B35F032D8D208900C3F07D /* Frameworks */,
 				48B35F042D8D208900C3F07D /* Resources */,
+				BA2C823AB18DC98B21B721ED /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -77,8 +106,6 @@
 				48B35F082D8D208900C3F07D /* AppStoreJSON */,
 			);
 			name = AppStoreJSON;
-			packageProductDependencies = (
-			);
 			productName = AppStoreJSON;
 			productReference = 48B35F062D8D208900C3F07D /* AppStoreJSON.app */;
 			productType = "com.apple.product-type.application";
@@ -91,7 +118,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1620;
-				LastUpgradeCheck = 1620;
+				LastUpgradeCheck = 1630;
 				TargetAttributes = {
 					48B35F052D8D208900C3F07D = {
 						CreatedOnToolsVersion = 16.2;
@@ -127,6 +154,52 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		BA2C823AB18DC98B21B721ED /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AppStoreJSON/Pods-AppStoreJSON-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AppStoreJSON/Pods-AppStoreJSON-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AppStoreJSON/Pods-AppStoreJSON-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E6F85B4AD2548A9F89FBAC8A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AppStoreJSON-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		48B35F022D8D208900C3F07D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -140,12 +213,12 @@
 /* Begin XCBuildConfiguration section */
 		48B35F1D2D8D208E00C3F07D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5788B4E3DB08F079B7BDFCD0 /* Pods-AppStoreJSON.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = H8YQBNNYZ2;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AppStoreJSON/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -168,12 +241,12 @@
 		};
 		48B35F1E2D8D208E00C3F07D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 02F9F681DF0AD3A41A31E7EF /* Pods-AppStoreJSON.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = H8YQBNNYZ2;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AppStoreJSON/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -229,9 +302,10 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = H8YQBNNYZ2;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -292,9 +366,10 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = H8YQBNNYZ2;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;

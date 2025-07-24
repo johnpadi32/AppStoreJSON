@@ -20,9 +20,10 @@ class BaseTabBarController: UITabBarController {
         // Do any additional setup after loading the view.
         
         viewControllers = [
-            createNavController(viewController: UIViewController(), title: "Today", imageName: "Today", image: "lineweight"),
-            createNavController(viewController: UIViewController(), title: "Apps", imageName: "Apps", image: "newspaper.fill"),
-            createNavController(viewController: AppSearchController(), title: "Search", imageName: "Search", image: "magnifyingglass")
+            createNavController(viewController: AppsController(), title: "Apps", imageName: "Apps", image: "newspaper.fill"),
+            createNavController(viewController: AppSearchController(), title: "Search", imageName: "Search", image: "magnifyingglass"),
+            createNavController(viewController: UIViewController(), title: "Today", imageName: "Today", image: "lineweight")
+
         ]
     }
 

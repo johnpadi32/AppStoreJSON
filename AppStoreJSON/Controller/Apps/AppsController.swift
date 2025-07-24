@@ -7,21 +7,44 @@
 
 import UIKit
 
-class AppsController: UICollectionViewController {
+class AppsController: BaseListController, UICollectionViewDelegateFlowLayout {
+    
+    //MARK: - Properties
+    
+    let cellId = "id"
+    
+    
+    
+    //MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        collectionView.backgroundColor = .yellow
+        collectionView.backgroundColor = .systemBackground
+        
+        collectionView.register(AppsGroupCell.self, forCellWithReuseIdentifier: cellId)
     }
     
     //MARK: - Helpers
     
-    init() {
-        super.init(collectionViewLayout: UICollectionViewFlowLayout())
+    
+    //MARK: - Actions
+    
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 5
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
+        return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return .init(width: view.frame.width, height: 250)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return .init(top: 16, left: 0, bottom: 0, right: 0)
+    }
+
 }
