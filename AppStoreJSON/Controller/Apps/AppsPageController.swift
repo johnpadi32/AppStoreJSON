@@ -7,12 +7,12 @@
 
 import UIKit
 
-class AppsController: BaseListController, UICollectionViewDelegateFlowLayout {
+class AppsPageController: BaseListController, UICollectionViewDelegateFlowLayout {
     
     //MARK: - Properties
     
     let cellId = "id"
-    
+    let headerId = "headerId"
     
     
     //MARK: - Lifecycle
@@ -23,12 +23,26 @@ class AppsController: BaseListController, UICollectionViewDelegateFlowLayout {
         collectionView.backgroundColor = .systemBackground
         
         collectionView.register(AppsGroupCell.self, forCellWithReuseIdentifier: cellId)
+        
+        //1
+        collectionView.register(AppsPageHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerId)
     }
     
     //MARK: - Helpers
     
     
     //MARK: - Actions
+    
+    //2
+    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerId, for: indexPath)
+        return header
+    }
+    
+    //3
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return .init(width: view.frame.width, height: 300)
+    }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 5
