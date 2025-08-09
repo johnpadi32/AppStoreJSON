@@ -1,5 +1,5 @@
 //
-//  Foundation.swift
+//  SearchResult.swift
 //  AppStoreJSON
 //
 //  Created by John Padilla on 6/10/25.

@@ -43,4 +43,33 @@ class Service {
             
         }.resume()  // fires off the request
     }
+    
+    func fetchGames(completion: @escaping (AppGroup?, Error?) ->()) {
+        guard let url = URL(string: "https://rss.marketingtools.apple.com/api/v2/us/apps/top-free/50/apps.json") else { return }
+        
+        URLSession.shared.dataTask(with: url) { (data, resp, err) in
+//            print(String(data: data!, encoding: .utf8))
+            
+            if let err = err {
+                completion(nil, err)
+                return
+            }
+            
+            do {
+                
+                let appGroup = try JSONDecoder().decode(AppGroup.self, from: data!)
+//                print(appGroup.feed.results)
+                
+                // success
+                appGroup.feed.results.forEach({print($0.name)})
+                completion(appGroup, nil)
+            } catch {
+                completion(nil, error)
+                //print("Failed to decode", error)
+            }
+            
+            
+        }
+        .resume() // this will fire your request
+    }
 }
