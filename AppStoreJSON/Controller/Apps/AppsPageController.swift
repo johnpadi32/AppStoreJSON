@@ -32,13 +32,18 @@ class AppsPageController: BaseListController, UICollectionViewDelegateFlowLayout
     
     //MARK: - Helpers
     
+    var editorsChoiceGames: AppGroup?
+    
     fileprivate func fetchData() {
-        print("Fetching now JSON DATA somehow..")
-        Service.shared.fetchGames { (AppGroup, err) in
+        Service.shared.fetchGames { (appGroup, err) in
             if let err = err {
                 print("Failed to fetch games:", err)
             }
-            print(AppGroup?.feed.results)
+            self.editorsChoiceGames = appGroup
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+
+            }
         }
     }
     
@@ -56,11 +61,16 @@ class AppsPageController: BaseListController, UICollectionViewDelegateFlowLayout
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return 1
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! AppsGroupCell
+        
+        cell.titleLabel.text = editorsChoiceGames?.feed.title
+        cell.horizontalController.appGroud = editorsChoiceGames
+        cell.horizontalController.collectionView.reloadData()
+        
         return cell
     }
     

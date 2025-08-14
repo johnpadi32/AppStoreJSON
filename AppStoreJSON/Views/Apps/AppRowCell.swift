@@ -40,7 +40,7 @@ class AppRowCell: UICollectionViewCell {
         super.init(frame: frame)
         
         
-        imageView.backgroundColor = .red
+        imageView.backgroundColor = .lightGray
         imageView.widthAnchor.constraint(equalToConstant: 64).isActive = true
         imageView.heightAnchor.constraint(equalToConstant: 64).isActive = true
         

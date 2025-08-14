@@ -61,7 +61,6 @@ class Service {
 //                print(appGroup.feed.results)
                 
                 // success
-                appGroup.feed.results.forEach({print($0.name)})
                 completion(appGroup, nil)
             } catch {
                 completion(nil, error)
