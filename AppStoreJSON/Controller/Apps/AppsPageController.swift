@@ -32,18 +32,74 @@ class AppsPageController: BaseListController, UICollectionViewDelegateFlowLayout
     
     //MARK: - Helpers
     
-    var editorsChoiceGames: AppGroup?
+    var groups = [AppGroup]()
     
     fileprivate func fetchData() {
-        Service.shared.fetchGames { (appGroup, err) in
-            if let err = err {
-                print("Failed to fetch games:", err)
-            }
-            self.editorsChoiceGames = appGroup
-            DispatchQueue.main.async {
-                self.collectionView.reloadData()
+        
+        var group1: AppGroup?
+        var group2: AppGroup?
+        var group3: AppGroup?
+        
+        // help you sync your data fetches together
+        let dispatchGroup = DispatchGroup()
+        
+        dispatchGroup.enter()
+        
+        Service.shared.fetchTopPay { (appGroup, err) in
+            print("Show 1")
+            dispatchGroup.leave()
+            group1 = appGroup
+//            if let group = appGroup {
+//                self.groups.append(group)
+//            }
+//            DispatchQueue.main.async {
+//                self.collectionView.reloadData()
+//            }
+        }
+        
+        dispatchGroup.enter()
+        
+        Service.shared.fetchTopFree {  (appGroup, err) in
+            print("Show 2")
 
+            dispatchGroup.leave()
+            group2 = appGroup
+//            if let group = appGroup {
+//                self.groups.append(group)
+//            }
+//            DispatchQueue.main.async {
+//                self.collectionView.reloadData()
+//            }
+        }
+        
+        dispatchGroup.enter()
+        Service.shared.fetchAppGroup(urlString: "https://rss.marketingtools.apple.com/api/v2/us/music/most-played/10/albums.json") { (appGroup, err) in
+            print("Show 3")
+
+            dispatchGroup.leave()
+            group3 = appGroup
+//            if let group = appGroup {
+//                self.groups.append(group)
+//            }
+//            DispatchQueue.main.async {
+//                self.collectionView.reloadData()
+//            }
+        }
+        
+        // Completion
+        dispatchGroup.notify(queue: .main) {
+            print("completed your dispatch group task...")
+            
+            if let group = group1 {
+                self.groups.append(group)
             }
+            if let group = group2 {
+                self.groups.append(group)
+            }
+            if let group = group3 {
+                self.groups.append(group)
+            }
+            self.collectionView.reloadData()
         }
     }
     
@@ -57,18 +113,20 @@ class AppsPageController: BaseListController, UICollectionViewDelegateFlowLayout
     
     //3
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return .init(width: view.frame.width, height: 300)
+        return .init(width: view.frame.width, height: 0)
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
+        return groups.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! AppsGroupCell
         
-        cell.titleLabel.text = editorsChoiceGames?.feed.title
-        cell.horizontalController.appGroud = editorsChoiceGames
+        let appGroup = groups[indexPath.item]
+        
+        cell.titleLabel.text = appGroup.feed.title
+        cell.horizontalController.appGroud = appGroup
         cell.horizontalController.collectionView.reloadData()
         
         return cell
