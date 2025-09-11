@@ -22,6 +22,7 @@ class AppsPageController: BaseListController, UICollectionViewDelegateFlowLayout
         aiv.hidesWhenStopped = true
         return aiv
     }()
+
     
     
     //MARK: - Lifecycle
@@ -153,6 +154,13 @@ class AppsPageController: BaseListController, UICollectionViewDelegateFlowLayout
         cell.titleLabel.text = appGroup.feed.title
         cell.horizontalController.appGroud = appGroup
         cell.horizontalController.collectionView.reloadData()
+        
+        cell.horizontalController.didSelectHandler =  { [weak self] feedResult in
+            let controller = AppDetailController()
+            controller.appId = feedResult.id
+            controller.navigationItem.title = feedResult.name
+            self?.navigationController?.pushViewController(controller, animated: true)
+        }
         
         return cell
     }
