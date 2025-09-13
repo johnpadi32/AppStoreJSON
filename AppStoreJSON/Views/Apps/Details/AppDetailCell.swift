@@ -11,6 +11,15 @@ class AppDetailCell: UICollectionViewCell {
     
     //MARK: - Properties
     
+    var app: Result! {
+        didSet {
+            nameLabel.text = app?.trackName
+            releaseNoteLabel.text = app?.releaseNotes
+            appIconImageView.sd_setImage(with: URL(string: app?.artworkUrl100 ?? ""))
+            priceButton.setTitle(app?.formattedPrice, for: .normal)
+        }
+    }
+    
     let appIconImageView = UIImageView(cornerRadius: 16)
     
     let nameLabel = UILabel(text: "App Name", font: .boldSystemFont(ofSize: 24), numberOfLines: 2)
