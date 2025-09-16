@@ -12,6 +12,7 @@ class AppDetailController: BaseListController, UICollectionViewDelegateFlowLayou
     //MARK: - Properties
     
     let detilCellId = "detilCellId"
+    let previewCellID = "previewCellId"
     
     var appId: String! {
         didSet {
@@ -36,9 +37,12 @@ class AppDetailController: BaseListController, UICollectionViewDelegateFlowLayou
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        collectionView.backgroundColor = .white
-        collectionView.register(AppDetailCell.self, forCellWithReuseIdentifier: detilCellId)
         navigationItem.largeTitleDisplayMode = .never
+        collectionView.backgroundColor = .white
+        
+        collectionView.register(AppDetailCell.self, forCellWithReuseIdentifier: detilCellId)
+        collectionView.register(PreviewCell.self, forCellWithReuseIdentifier: previewCellID)
+
     }
     
     //MARK: - Helpers
@@ -46,26 +50,41 @@ class AppDetailController: BaseListController, UICollectionViewDelegateFlowLayou
     //MARK: - Actions
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
+        return 2
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: detilCellId, for: indexPath) as! AppDetailCell
-        cell.app = app
-        return cell
+        
+        if indexPath.item == 0 {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: detilCellId, for: indexPath) as! AppDetailCell
+            cell.app = app
+            return cell
+        } else {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: previewCellID, for: indexPath) as! PreviewCell
+            cell.horizontalController.app = self.app
+            return cell
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        //MARK: - Autozising with cells
-        // calculate the necessary size for our cell somehow
-        let dummyCell = AppDetailCell(frame: .init(x: 0, y: 0, width: view.frame.width, height: 1000))
         
-        dummyCell.app = app
-        dummyCell.layoutIfNeeded()
+        if indexPath.item  == 0 {
+            
+            //MARK: - Autozising with cells
+            // calculate the necessary size for our cell somehow
+            let dummyCell = AppDetailCell(frame: .init(x: 0, y: 0, width: view.frame.width, height: 1000))
+            
+            dummyCell.app = app
+            dummyCell.layoutIfNeeded()
+            
+            let estimatedSize = dummyCell.systemLayoutSizeFitting(.init(width: view.frame.width, height: 1000))
+            
+            return .init(width: view.frame.width, height: estimatedSize.height)
+        } else {
+            return .init(width: view.frame.width, height: 500)
+        }
         
-        let estimatedSize = dummyCell.systemLayoutSizeFitting(.init(width: view.frame.width, height: 1000))
-        
-        return .init(width: view.frame.width, height: estimatedSize.height)
+
     }
 }
