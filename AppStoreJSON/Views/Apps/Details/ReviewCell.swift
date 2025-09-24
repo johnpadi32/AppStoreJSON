@@ -17,6 +17,19 @@ class ReviewCell: UICollectionViewCell {
     
     let bodyLabel = UILabel(text: "Review body\nReview body\nReview body\n", font: .systemFont(ofSize: 16), numberOfLines: 0)
     
+    let starsStackViews: UIStackView = {
+        var arrangedSubviews = [UIView]()
+        (0..<5).forEach ({ (_) in
+            let imageView = UIImageView(image: .actions)
+            arrangedSubviews.append(imageView)
+        })
+        
+        let stackView = UIStackView(arrangedSubviews: arrangedSubviews)
+        return stackView
+    }()
+    
+    
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
