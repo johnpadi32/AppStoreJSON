@@ -22,7 +22,7 @@ class TodayCell: UICollectionViewCell {
         
         addSubview(imageView)
         imageView.contentMode = .scaleAspectFill
-        imageView.fillSuperView()
+        imageView.centerInSuperview(size: .init(width: 250, height: 250))
     }
     
     required init?(coder: NSCoder) {
